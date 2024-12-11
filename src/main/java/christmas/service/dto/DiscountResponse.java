@@ -1,4 +1,6 @@
 package christmas.service.dto;
 
-public record DiscountResponse(int discountPrice) {
+import christmas.domain.Discount;
+
+public record DiscountResponse(Discount discountType, int discountPrice) {
 }

@@ -3,12 +3,12 @@ package christmas.domain;
 import christmas.infrastructure.constants.ExceptionMessage;
 import christmas.infrastructure.exception.CustomException;
 
-public record DecemberDate(int date) {
+public record DecemberDate(int value) {
     private final static int MIN = 1;
     private final static int MAX = 31;
 
     public DecemberDate {
-        validateDate(date);
+        validateDate(value);
     }
 
     public static DecemberDate of(String input) {
@@ -23,5 +23,17 @@ public record DecemberDate(int date) {
         if (date < MIN || date > MAX) {
             throw new CustomException(ExceptionMessage.INVALID_DATE.getMessage());
         }
+    }
+
+    public boolean isSpecialDate() {
+        return Special.isSpecialDay(value);
+    }
+
+    public boolean isWeekend() {
+        return Weekend.isWeekend(value);
+    }
+
+    public boolean isWeekday() {
+        return !Weekend.isWeekend(value);
     }
 }
