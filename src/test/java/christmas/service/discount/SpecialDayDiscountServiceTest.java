@@ -17,7 +17,7 @@ class SpecialDayDiscountServiceTest {
 
     @ParameterizedTest
     @DisplayName("별표 표시가 되어있는 날짜는 특별 할인을 적용받는다.")
-    @ValueSource(ints = {3, 10, 17, 24, 31})
+    @ValueSource(ints = {3, 10, 17, 24, 25, 31})
     void 별표_표시_날짜_할인_적용(final int input) {
         // given
         DecemberDate date = new DecemberDate(input);
@@ -32,7 +32,7 @@ class SpecialDayDiscountServiceTest {
 
     @ParameterizedTest
     @DisplayName("별표 표시가 없는 날짜는 특별 할인을 적용받지 않는다.")
-    @ValueSource(ints = {1, 2, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 25, 26, 27, 28, 29, 30})
+    @ValueSource(ints = {1, 2, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 26, 27, 28, 29, 30})
     void 별표_표시_날짜_할인_미적용(final int input) {
         // given
         DecemberDate date = new DecemberDate(input);
