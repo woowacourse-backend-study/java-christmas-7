@@ -22,7 +22,7 @@ public class Util {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new CustomException(ExceptionMessage.INVALID_INPUT.getMessage());
+            throw new CustomException(ExceptionMessage.INVALID_ORDER.getMessage());
         }
     }
 
