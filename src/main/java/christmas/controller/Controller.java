@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.domain.Order;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
@@ -15,11 +16,18 @@ public class Controller {
     }
 
     public void run() {
-        String value = get();
+        outputView.printWelcome();
+        final int visitDate = getVisitDate();
+        Order order = getOrder();
+
     }
 
-    private String get() {
-        return doLoop(inputView::getValue);
+    private int getVisitDate() {
+        return doLoop(inputView::getVisitDate).date();
+    }
+
+    private Order getOrder() {
+        return doLoop(inputView::getOrder);
     }
 
     public <T> T doLoop(Supplier<T> function) {

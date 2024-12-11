@@ -1,5 +1,10 @@
 package christmas.domain;
 
+import christmas.infrastructure.constants.ExceptionMessage;
+import christmas.infrastructure.exception.CustomException;
+
+import java.util.Arrays;
+
 public enum Menu {
     양송이수프("양송이수프", MenuType.APPETIZER, 6000),
     타파스("타파스", MenuType.APPETIZER, 5500),
@@ -26,5 +31,12 @@ public enum Menu {
         this.name = name;
         this.type = type;
         this.price = price;
+    }
+
+    public static Menu from(String name) {
+        return Arrays.stream(Menu.values())
+                .filter(menu -> menu.name.equals(name))
+                .findAny()
+                .orElseThrow(() -> new CustomException(ExceptionMessage.INVALID_ORDER.getMessage()));
     }
 }
