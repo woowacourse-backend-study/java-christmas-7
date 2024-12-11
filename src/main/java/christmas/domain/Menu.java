@@ -10,8 +10,8 @@ public enum Menu {
     해산물파스타("해산물파스타", MenuType.MAIN, 35000),
     크리스마스파스타("크리스마스파스타", MenuType.MAIN, 25000),
 
-    초코케이크("초코케이크", MenuType.DESERT, 15000),
-    아이스크림("아이스크림", MenuType.DESERT, 5000),
+    초코케이크("초코케이크", MenuType.DESSERT, 15000),
+    아이스크림("아이스크림", MenuType.DESSERT, 5000),
 
     제로콜라("제로콜라", MenuType.DRINK, 3000),
     레드와인("레드와인", MenuType.DRINK, 60000),
