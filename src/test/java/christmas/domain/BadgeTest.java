@@ -20,7 +20,7 @@ class BadgeTest {
         Badge badge = Badge.getBadge(total);
 
         // then
-        assertThat(badge).isNull();
+        assertThat(badge).isEqualTo(Badge.EMPTY);
     }
 
     @ParameterizedTest
