@@ -13,6 +13,8 @@ public class Order {
     public static final int MAX_COUNT = 20;
     private final Map<Menu, Integer> order = new EnumMap<>(Menu.class);
 
+    private Order() {}
+
     public static Order of(String input) {
         Order result = new Order();
         List<String> split = splitByComma(input);
@@ -25,10 +27,35 @@ public class Order {
             final int count = parseToInt(orderMenu.get(1));
             result.addOrder(Menu.from(menuName), count);
         }
+        result.validate();
         return result;
     }
 
-    public void addOrder(Menu menu, final int count) {
+    public int getMenuCount(MenuType target) {
+        int total = 0;
+        for (Menu menu : order.keySet()) {
+            if (menu.type == target) {
+                total += order.get(menu);
+            }
+        }
+        return total;
+    }
+
+    public int getTotalPrice() {
+        int total = 0;
+        for (Menu menu : order.keySet()) {
+            total += order.get(menu) * menu.price;
+        }
+        return total;
+    }
+
+    private void validate() {
+        if (getMenuCount(MenuType.DRINK) == getTotalCount()) {
+            throw new CustomException(ExceptionMessage.INVALID_ORDER.getMessage());
+        }
+    }
+
+    private void addOrder(Menu menu, final int count) {
         if (order.get(menu) != null) {
             throw new CustomException(ExceptionMessage.INVALID_ORDER.getMessage());
         }
@@ -43,15 +70,5 @@ public class Order {
 
     private int getTotalCount() {
         return order.values().stream().mapToInt(Integer::intValue).sum();
-    }
-
-    public int getMenuCount(MenuType target) {
-        int total = 0;
-        for (Menu menu : order.keySet()) {
-            if (menu.type == target) {
-                total += order.get(menu);
-            }
-        }
-        return total;
     }
 }
