@@ -32,6 +32,9 @@ public class Order {
         if (order.get(menu) != null) {
             throw new CustomException(ExceptionMessage.INVALID_ORDER.getMessage());
         }
+        if (count == 0) {
+            throw new CustomException(ExceptionMessage.INVALID_ORDER.getMessage());
+        }
         order.put(menu, count);
         if (getTotalCount() > MAX_COUNT) {
             throw new CustomException(ExceptionMessage.INVALID_ORDER.getMessage());
