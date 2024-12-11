@@ -3,6 +3,7 @@ package christmas.domain;
 import christmas.infrastructure.constants.ExceptionMessage;
 import christmas.infrastructure.exception.CustomException;
 
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,10 @@ public class Order {
     private final Map<Menu, Integer> order = new EnumMap<>(Menu.class);
 
     private Order() {}
+
+    public Map<Menu, Integer> getOrder() {
+        return Collections.unmodifiableMap(order);
+    }
 
     public static Order of(String input) {
         Order result = new Order();
