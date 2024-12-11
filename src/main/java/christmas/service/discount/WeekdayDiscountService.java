@@ -14,9 +14,10 @@ public class WeekdayDiscountService implements DiscountService {
     @Override
     public DiscountResponse getDiscountInfo(DecemberDate date, Order order) {
         if (date.isWeekday()) {
-            return new DiscountResponse(DISCOUNT_TYPE, 0);
+            final int targetCount = order.getMenuCount(DISCOUNT_TARGET);
+            return new DiscountResponse(DISCOUNT_TYPE, DISCOUNT_PRICE * targetCount);
+
         }
-        final int targetCount = order.getMenuCount(DISCOUNT_TARGET);
-        return new DiscountResponse(DISCOUNT_TYPE, DISCOUNT_PRICE * targetCount);
+        return new DiscountResponse(DISCOUNT_TYPE, 0);
     }
 }
